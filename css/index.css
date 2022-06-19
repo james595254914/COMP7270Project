@@ -1,0 +1,31 @@
+html,body{
+    overflow-x: hidden;
+}
+
+:target {
+    padding-top: 65px;
+    margin-top: -65px;
+}
+
+.center {
+    text-align: center !important;
+}
+
+.carousel {
+    background-repeat: no-repeat; 
+    background-size:cover;
+}
+
+.section_div{
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.dark-block {
+    background-color: rgb(37, 121, 157) !important;
+    color: white !important;
+}
+
+.white-text {
+    color: white !important;
+}

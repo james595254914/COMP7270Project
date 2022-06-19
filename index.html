@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>COMP7270 Project - S1_Vita</title>
+    <!-- include vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <!-- include Buefy -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+</head>
+
+<body>
+    <div id="app">
+        <template>
+            <b-navbar type="is-dark" fixed-top="true" transparent="true">
+                <template #brand>
+                    <b-navbar-item href="#">
+                        <b-icon icon="smoking-off" size="is-large" type="is-light"></b-icon>
+                    </b-navbar-item>
+                </template>
+                <template #start>
+                    <b-navbar-item>
+                        S1_Vita
+                    </b-navbar-item>
+                </template>
+
+                <template #end>
+                    <b-navbar-item href="#About">
+                        About
+                    </b-navbar-item>
+                    <b-navbar-item href="#Situation">
+                        Situation
+                    </b-navbar-item>
+                    <b-navbar-item href="#Type">
+                        Type
+                    </b-navbar-item>
+                    <b-navbar-item href="#Harmful">
+                        Harm
+                    </b-navbar-item>
+                    <b-navbar-dropdown label="Reasons">
+                        <b-navbar-item href="#starting">
+                            Reason for starting to smoking
+                        </b-navbar-item>
+                        <b-navbar-item href="#givingup">
+                            Reason for giving up smoking
+                        </b-navbar-item>
+                        <b-navbar-item href="#failing">
+                            Reason for failing to give up smoking
+                        </b-navbar-item>
+                    </b-navbar-dropdown>
+                    <b-navbar-item href="#Counselling">
+                        Counselling
+                    </b-navbar-item>
+                </template>
+            </b-navbar>
+        </template>
+
+        <b-carousel :autoplay="true" with-carousel-list :indicator="false" :overlay="gallery">
+            <b-carousel-item v-for="(item, i) in items" :key="i">
+                <figure class="image">
+                    <img :src="item.image">
+                </figure>
+            </b-carousel-item>
+            <span v-if="gallery" @click="switchGallery(false)" class="modal-close is-medium">
+        </b-carousel>
+
+        <!-- About Our Data Story-->
+        <section id="About" class="section center dark-block" style="padding-top: 100px;">
+            <h1 class="title is-2 center white-text">About</h1>
+            <hr class="mt-2"
+                style="height: 3px; width: 100px; border: none; color: rgb(255, 255, 255); background-color: rgb(255, 255, 255); margin: auto;">
+            <div data-aos="fade-up" class="section_div columns is-multiline is-half-mobile">
+                <div class="column is-half is-mobile">
+                    <p>
+                    <h3 class="title is-4 white-text" style="text-align: end;">
+                        Nowadays more and more people smoking in our daily life.
+                        However smoking is not a good habbit,
+                        it will not only cause many type of diseases
+                        but also, shortens the life.
+                        In our website, we will let you know about the cons of smoking and suggest some Smoking
+                        Counselling and Cessation Centres.
+                    </h3>
+                    </p>
+                </div>
+                <div class="column is-half is-mobile">
+                    <figure class="image">
+                        <img src="/image/about_pic.jpeg">
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+
+        <!--Situation--->
+        <section id="Situation" class="section center">
+            <h1 class="title is-2 center">Situation</h1>
+            <hr class="mt-2"
+                style="height: 3px; width: 100px; border: none; color: rgb(0, 0, 0); background-color: rgb(0, 0, 0); margin: auto;">
+            <div class="section_div">
+                <div class="columns is-multiline is-half-mobile">
+                    <div data-aos="fade-right" class="column is-half is-mobile">
+                        <p style="color: red; font-size: 100px; text-align: center;"><b>691500</b></p>
+                    </div>
+                    <div class="column is-half is-mobile" style="text-align: justify;">
+                        <h2 class="title is-4">current
+                            smokers at the time of enumeration, accounting
+                            for 11.1% of all persons aged 15 and over in Hong
+                            Kong. Of those 691 500 current smokers, some
+                            652 000 (94.3%) were daily smokers and some
+                            39 500 (5.7%) were non-daily smokers. In
+                            addition, there were some 268 800 ex-daily
+                            smokers who previously had a daily smoking
+                            habit, representing 4.3% of all persons aged 15
+                            and over.
+                        </h2>
+                    </div>
+                </div>
+                <br><br><br>
+
+                <!-- Chart 0 -->
+                <div class="columns is-multiline is-half-mobile">
+                    <div class="column is-half is-mobile" style="text-align: justify;">
+                        <br><br>
+                        <h1 class="title is-4">
+                            The percentage of daily cigarette
+                            smokers had been decreasing steadily over the
+                            past two decades, from 15.0% in 1998 to
+                            10.2% in 2019. But in the other hands, As for
+                            the percentage of ex-daily cigarette smokers,
+                            it increase from 3.8% to 4.3% between 1998 and
+                            2019. Although the percentage of people who smoking
+                            every day over the age of 15 has decreased in the
+                            past 20 years, there are still a large number of people who smoking.
+                        </h1>
+                    </div>
+                    <div data-aos="fade-left" class="column is-half is-mobile">
+                        <canvas id="myChart0" style="min-height: 300px;"></canvas>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Card part for type -->
+        <section id="Type" class="section center dark-block">
+            <h1 class="title is-2 white-text">Types of tobacco</h1>
+            <hr class="mt-2"
+                style="height: 3px; width: 200px; border: none; color: rgb(255, 255, 255); background-color: rgb(255, 255, 255); margin: auto;">
+            <div class="columns section_div is-centered is-multiline is-vcentered">
+                <div data-aos="flip-up" class="column is-full-mobile is-one-quarter">
+                    <div class="card">
+                        <div class="card-image is-mobile">
+                            <figure class="image is-3by2">
+                                <img src="image/cigarette.jpg" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content is-mobile">
+                            <div class="content has-text-centered">
+                                Cigarettes
+                            </div>
+                            <div class="content has-text-centered">
+                                {{cardDatas.Cigarettes}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="flip-up" class="column is-full-mobile is-one-quarter">
+                    <div class="card">
+                        <div class="card-image is-mobile">
+                            <figure class="image is-3by2">
+                                <img src="image/electronic.jpg" alt="Placeholder image">
+                            </figure>
+                        </div>
+
+                        <div class="card-content is-mobile">
+                            <div class="content has-text-centered">
+                                Heated tobacco
+                            </div>
+                            <div class="content has-text-centered">
+                                {{cardDatas.HeatedTobacco}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="flip-up" class="column is-full-mobile is-one-quarter">
+                    <div class="card">
+                        <div class="card-image is-mobile">
+                            <figure class="image is-3by2">
+                                <img src="image/heat.jpg" alt="Placeholder image">
+                            </figure>
+                        </div>
+
+                        <div class="card-content is-mobile">
+                            <div class="content has-text-centered">
+                                E-cigarettes
+                            </div>
+                            <div class="content has-text-centered">
+                                {{cardDatas.Ecigarettes}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="flip-up" class="column is-full-mobile is-one-quarter">
+                    <div class="card">
+                        <div class="card-image is-mobile">
+                            <figure class="image is-3by2">
+                                <img src="image/Hookah.jpg" alt="Placeholder image">
+                            </figure>
+                        </div>
+
+                        <div class="card-content is-mobile">
+                            <div class="content has-text-centered">
+                                Other forms
+                            </div>
+                            <div class="content has-text-centered">
+                                {{cardDatas.OtherForms}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Card part for Harmful--->
+        <section id="Harmful" class="section">
+            <h1 class="title is-2 center">The Harm Of Smoking</h1>
+            <hr class="mt-2"
+                style="height: 3px; width: 300px; border: none; color: rgb(0, 0, 0); background-color: rgb(0, 0, 0); margin: auto;">
+            <div class="section_div columns is-multiline is-flex">
+                <div data-aos="zoom-in" class="column is-full-mobile is-multiline is-one-quarter">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="image/picture1.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content is-mobile">
+                            <div class="content is-mobile">
+                                <p class="title is-4">Lung Cancer</p>
+                            </div>
+                            <div class="content is-mobile">
+                                Medical clinical studies have confirmed that smoking is the main cause of lung cancer.
+                                Statistics show that 90% of people who die of lung cancer are smokers.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="zoom-in" class="column is-full-mobile is-multiline-mobile is-one-quarter">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="image/picture2.jpg" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content is-mobile">
+                            <div class="content is-mobile">
+                                <p class="title is-4">Heart Disease</p>
+                            </div>
+                            <div class="content is-mobile">
+                                The nicotine and carbon monoxide in cigarettes affect heart function, and smokers are 
+                                more likely to suffer from heart disease than people who do not smoke.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="zoom-in" class="column is-full-mobile is-multiline-mobile is-one-quarter">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="image/picture3.jpg" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content is-mobile">
+                            <div class="content is-mobile">
+                                <p class="title is-4">Other Diseases</p>
+                            </div>
+                            <div class="content is-mobile">
+                                Smoking also greatly increases the risk of various diseases, such as throat cancer, oral
+                                cancer, gastric ulcer,emphysema and pneumonia and so on.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="zoom-in" class="column is-full-mobile is-multiline-mobile is-one-quarter ">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="image/picture4.jpg" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content is-mobile">
+                            <div class="content is-mobile">
+                                <p class="title is-4">Shortens Life</p>
+                            </div>
+                            <div class="content is-mobile">
+                                Medical research has proved that the average life expectancy of smokers is three years
+                                shorter than that of non-smokers.In order to save life, please quit smoiking!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+
+        <!-- Chart 1 -->
+        <section id="starting" class="section center dark-block">
+            <h1 class="title is-2 center white-text">Reason for starting to smoking</h1>
+            <hr class="mt-2"
+                style="height: 3px; width: 30%; border: none; color: rgb(255, 255, 255); background-color: rgb(255, 255, 255); margin: auto;">
+            <div class="section_div columns is-multiline is-half-mobile">
+                <div data-aos="fade-up-right" class="column is-half is-mobile">
+                    <canvas id="myChart"></canvas>
+                </div>
+
+                <div data-aos="fade-up-left" class="column is-half is-mobile" style="text-align: justify;">
+                    <br><br>
+                    <h1 class="title is-4 white-text">
+                        According to the data, most of people who starting to smoking was influenced by friends.
+                        In addition, A large proportion of people who smoke because of curiosity and social needs
+                        A small number of people smoke for other reasons, such as being influenced by relatives,
+                        or just want to kill time, and other reasons(like Refreshing one’s mind,Looking more mature /
+                        stylish
+                        or Influenced by public figures ).
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Chart 2 -->
+        <section id="givingup" class="section center">
+            <h1 class="title is-2">Reason for giving up smoking</h1>
+            <hr class="mt-2"
+                style="height: 3px; width: 30%; border: none; color: rgb(0, 0, 0); background-color: rgb(0, 0, 0); margin: auto;">
+            <div class="section_div columns is-multiline is-vcentered">
+                <div data-aos="zoom-in-left" class="column is-full-mobile is-two-fifths" style="text-align: justify;">
+                    <h1 class="title is-4">
+                        32.8% of ex-daily cigarette smokers gave up smoking on their own accord because
+                        <i>health had already been harmed by smoking</i>
+                        <br>
+                        <br>
+                        28.9% gave up smoking because
+                        <i>health had not yet been harmed by smoking, but wanted to
+                            prevent it from being harmed</i>.
+                        <br>
+                        <br>
+                        Some 208 800 (32.7%) daily
+                        smokers had tried but <b><u>failed</u></b> to give up smoking.
+                    </h1>
+                </div>
+                <div data-aos="zoom-in-right" class="column is-full-mobile is-three-fifths">
+                    <div>
+                        <canvas id="myChart2"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chart 3 -->
+        <section id="failing" class="section center dark-block">
+            <h1 class="title is-2 white-text">Reason for failing to give up smoking</h1>
+            <hr class="mt-2"
+                style="height: 3px; width: 40%; border: none; color: rgb(255, 255, 255); background-color: rgb(255, 255, 255); margin: auto;">
+            <div class="section_div columns is-centered">
+                <div data-aos="fade-right" class="column is-half is-full-mobile">
+                    <div id="chart3" style="height:50vh;min-width:50vh;"></div>
+                </div>
+                <div data-aos="fade-left" class="column is-half is-full-mobile">
+                    <br><br>
+                    <h1 class="title is-3 white-text">Key to successfully quit smoking</h1>
+                    <h1 class="title is-3 white-text"><u><b>BE DETERMINED</b></u></h1><br><br>
+                    <h1 class="title is-3 white-text">OR</h1><br><br>
+                    <h1 class="title is-3 white-text"><u><b>Seek Help!</b></u></h1><br><br>
+                </div>
+            </div>
+        </section>
+
+        <section id="Counselling" class="section">
+            <h1 class="title is-2 center">Smoking Counselling and Cessation Centres</h1>
+            <hr class="mt-2"
+                style="height: 3px; width: 40%; border: none; color: rgb(0, 0, 0); background-color: rgb(0, 0, 0); margin: auto;">
+            <div data-aos="fade-up" class="section_div columns is-centered">
+                <div class="column is-one-quarter is-full-mobile">
+                    <h1 class="title is-4">Professional counselling</h1>
+                    <br>
+                    <h1 class="title is-4">Nicotine Replacement Therapy (NRT)</h1>
+                    <br>
+                    <h1 class="title is-4">Advice to smokers' relatives and friends</h1>
+                </div>
+                <div data-aos="fade-up" class="column is-three-quarters is-full-mobile">
+                    <b-table :data="chartDatas.tableDatas" :columns="tableDatas.columns"></b-table>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer dark-block">
+            <div class="columns is-centered">
+                <div class="column is-helf content has-text-centered">
+                    <a href="https://www.censtatd.gov.hk/en/data/stat_report/product/C0000047/att/B11302702020XXXXB0100.pdf" target=”_blank”
+                        class="white-text">Data Reference</a>
+                </div>
+                <div class="column is-helf content has-text-centered">
+                    <p>
+                        Wan Sui Pan 21470014
+                        <br>
+                        Feng Yaou 21401993
+                        <br>
+                        Kong Weiyu 21432996
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+    <!-- include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- include amcharts -->
+    <script src="//www.amcharts.com/lib/4/core.js"></script>
+    <script src="//www.amcharts.com/lib/4/charts.js"></script>
+    <script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/kelly.js"></script>
+    <script src="js/Chart3svgPaths.js"></script> <!-- for chart3 -->
+    <script src="js/chart.js"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            // Global settings:
+            disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+            startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+            initClassName: 'aos-init', // class applied after initialization
+            animatedClassName: 'aos-animate', // class applied on animation
+            useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+            disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+            debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+            throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+            // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+            offset: 0, // offset (in px) from the original trigger point
+            delay: 300, // values from 0 to 3000, with step 50ms
+            duration: 1000, // values from 0 to 3000, with step 50ms
+            easing: 'ease', // default easing for AOS animations
+            once: false, // whether animation should happen only once - while scrolling down
+            mirror: false, // whether elements should animate out while scrolling past them
+            anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+
+        });
+    </script>
+</body>
+
+</html>
